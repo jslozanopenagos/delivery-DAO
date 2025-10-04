@@ -1,4 +1,4 @@
-package com.solvd;
+package com.solvd.delivery;
 
 /**
  * Hello world!
