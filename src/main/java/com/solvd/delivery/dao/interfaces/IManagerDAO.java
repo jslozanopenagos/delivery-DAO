@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface IManagerDao {
+public interface IManagerDAO {
     Optional<Manager> findById(Long id) throws SQLException;
     List<Customer> findAll() throws SQLException;
     boolean create(Manager manager) throws SQLException;

@@ -1,10 +1,10 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IUserDao;
+import com.solvd.delivery.dao.interfaces.IUserDAO;
 
 import java.sql.Timestamp;
 
-public class User implements IUserDao {
+public class User implements IUserDAO {
     private Long userId;
     private String username;
     private String userPassword;

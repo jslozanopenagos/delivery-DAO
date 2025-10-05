@@ -1,8 +1,8 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.ICustomerDao;
+import com.solvd.delivery.dao.interfaces.ICustomerDAO;
 
-public class Customer implements ICustomerDao {
+public class Customer implements ICustomerDAO {
     private Long customerId;
     private String address;
     private String phoneNumber;

@@ -1,8 +1,8 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.ISupermarketDao;
+import com.solvd.delivery.dao.interfaces.ISupermarketDAO;
 
-public class Supermarket implements ISupermarketDao {
+public class Supermarket implements ISupermarketDAO {
     private Long supermarketId;
     private boolean bulkDiscounts;
 

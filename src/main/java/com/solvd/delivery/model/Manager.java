@@ -1,8 +1,8 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IManagerDao;
+import com.solvd.delivery.dao.interfaces.IManagerDAO;
 
-public class Manager implements IManagerDao {
+public class Manager implements IManagerDAO {
     private Long managerId;
     private boolean isVerified;
 

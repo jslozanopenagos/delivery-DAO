@@ -1,10 +1,10 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IMenuItemDao;
+import com.solvd.delivery.dao.interfaces.IMenuItemDAO;
 
 import java.sql.Timestamp;
 
-public class MenuItem implements IMenuItemDao {
+public class MenuItem implements IMenuItemDAO {
     private Long itemId;
     private String name;
     private String description;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
 
-public interface IUserDao {
+public interface IUserDAO {
     Optional<User> findById(Long id) throws SQLException;
     Optional<User> findByUsername(String username) throws SQLException;
     List<User> findAll() throws SQLException;

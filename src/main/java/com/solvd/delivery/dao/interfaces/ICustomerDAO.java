@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
 
-public interface ICustomerDao {
+public interface ICustomerDAO {
     Optional<Customer> findById(Long id) throws SQLException;
     List<Customer> findAll() throws SQLException;
     boolean create(Customer customer) throws SQLException;

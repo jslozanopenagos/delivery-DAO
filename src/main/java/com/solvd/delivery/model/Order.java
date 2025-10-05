@@ -1,10 +1,10 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IOrderDao;
+import com.solvd.delivery.dao.interfaces.IOrderDAO;
 
 import java.sql.Timestamp;
 
-public class Order implements IOrderDao {
+public class Order implements IOrderDAO {
     private Long orderId;
     private Long customerId;
     private Long courierId;

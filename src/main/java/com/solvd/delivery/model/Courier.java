@@ -1,8 +1,8 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.ICourierDao;
+import com.solvd.delivery.dao.interfaces.ICourierDAO;
 
-public class Courier implements ICourierDao {
+public class Courier implements ICourierDAO {
     private Long courierId;
     private VehicleType vehicleType;
     private String licensePlate;

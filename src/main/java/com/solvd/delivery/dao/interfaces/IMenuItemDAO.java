@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
 
-public interface IMenuItemDao {
+public interface IMenuItemDAO {
     Optional<MenuItem> findById(Long id) throws SQLException;
     List<MenuItem> findAll() throws SQLException;
     Long create(MenuItem item) throws SQLException;

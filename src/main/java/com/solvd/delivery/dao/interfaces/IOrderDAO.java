@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
 
-public interface IOrderDao {
+public interface IOrderDAO {
     Optional<Order> findById(Long id) throws SQLException;
     List<Order> findAll() throws SQLException;
     Long create(Order order) throws SQLException;

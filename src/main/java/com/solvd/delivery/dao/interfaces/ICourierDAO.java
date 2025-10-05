@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
 
-public interface ICourierDao {
+public interface ICourierDAO {
     Optional<Courier> findById(Long id) throws SQLException;
     List<Courier> findAll() throws SQLException;
     boolean create(Courier courier) throws SQLException;

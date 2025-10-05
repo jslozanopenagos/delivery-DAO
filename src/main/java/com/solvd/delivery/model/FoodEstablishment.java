@@ -1,10 +1,10 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IFoodEstablishmentDao;
+import com.solvd.delivery.dao.interfaces.IFoodEstablishmentDAO;
 
 import java.sql.Timestamp;
 
-public class FoodEstablishment implements IFoodEstablishmentDao {
+public class FoodEstablishment implements IFoodEstablishmentDAO {
     private Long establishmentId;
     private String name;
     private String address;

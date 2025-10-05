@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.sql.SQLException;
 
-public interface IFoodEstablishmentDao {
+public interface IFoodEstablishmentDAO {
     Optional<FoodEstablishment> findById(Long id) throws SQLException;
     List<FoodEstablishment> findAll() throws SQLException;
     Long create(FoodEstablishment fe) throws SQLException;
