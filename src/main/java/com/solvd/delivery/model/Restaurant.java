@@ -2,7 +2,7 @@ package com.solvd.delivery.model;
 
 import com.solvd.delivery.dao.interfaces.IRestaurantDAO;
 
-public class Restaurant implements IRestaurantDAO {
+public class Restaurant {
     private Long restaurantId;
     private String cuisineType;
 

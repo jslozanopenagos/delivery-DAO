@@ -4,7 +4,7 @@ import com.solvd.delivery.dao.interfaces.IFoodEstablishmentDAO;
 
 import java.sql.Timestamp;
 
-public class FoodEstablishment implements IFoodEstablishmentDAO {
+public class FoodEstablishment {
     private Long establishmentId;
     private String name;
     private String address;

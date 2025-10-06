@@ -4,7 +4,7 @@ import com.solvd.delivery.dao.interfaces.IOrderDAO;
 
 import java.sql.Timestamp;
 
-public class Order implements IOrderDAO {
+public class Order {
     private Long orderId;
     private Long customerId;
     private Long courierId;

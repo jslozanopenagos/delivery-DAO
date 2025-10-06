@@ -8,12 +8,12 @@ import java.sql.SQLException;
 public abstract class BaseDAO {
 
     protected Connection getConnection() throws SQLException {
-        return ConnectionPool.getInstance().getConnection();
+        return ConnectionPool.getCp().getConnection();
     }
 
     protected void releaseConnection() {
         try {
-            ConnectionPool.getInstance().releaseConnection();
+            ConnectionPool.getCp().releaseConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }

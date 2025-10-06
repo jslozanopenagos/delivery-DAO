@@ -2,7 +2,7 @@ package com.solvd.delivery.model;
 
 import com.solvd.delivery.dao.interfaces.ISupermarketDAO;
 
-public class Supermarket implements ISupermarketDAO {
+public class Supermarket{
     private Long supermarketId;
     private boolean bulkDiscounts;
 

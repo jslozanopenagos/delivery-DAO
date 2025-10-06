@@ -1,10 +1,14 @@
 package com.solvd.delivery.model;
 
+import com.solvd.delivery.dao.impl.mysql.BaseDAO;
 import com.solvd.delivery.dao.interfaces.IUserDAO;
 
 import java.sql.Timestamp;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
-public class User implements IUserDAO {
+public class User {
     private Long userId;
     private String username;
     private String userPassword;
@@ -23,27 +27,27 @@ public class User implements IUserDAO {
         this.createdAt = createdAt;
     }
 
-    public Long getUserId() {
+    public Long getId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setId(Long userId) {
         this.userId = userId;
     }
 
-    public String getUsername() {
+    public String getName() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setName(String username) {
         this.username = username;
     }
 
-    public String getUserPassword() {
+    public String getPassword() {
         return userPassword;
     }
 
-    public void setUserPassword(String userPassword) {
+    public void setPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 

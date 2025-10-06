@@ -4,7 +4,7 @@ import com.solvd.delivery.dao.interfaces.IMenuItemDAO;
 
 import java.sql.Timestamp;
 
-public class MenuItem implements IMenuItemDAO {
+public class MenuItem {
     private Long itemId;
     private String name;
     private String description;

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 
 public class ConnectionPool {
-    private static ConnectionPool instance;
+    private static ConnectionPool cp;
     private Connection connection;
 
     private static final String URL = "jdbc:mysql://localhost:3306/food_delivery_app_db";
@@ -22,11 +22,11 @@ public class ConnectionPool {
         }
     }
 
-    public static synchronized ConnectionPool getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new ConnectionPool();
+    public static synchronized ConnectionPool getCp() throws SQLException {
+        if (cp == null) {
+            cp = new ConnectionPool();
         }
-        return instance;
+        return cp;
     }
 
     public Connection getConnection() {
