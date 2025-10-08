@@ -1,9 +1,8 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.ICourierDAO;
+import java.sql.Timestamp;
 
-public class Courier {
-    private Long courierId;
+public class Courier extends User {
     private VehicleType vehicleType;
     private String licensePlate;
     private boolean availability;
@@ -11,17 +10,16 @@ public class Courier {
 
     public Courier() {}
 
-    public Courier(Long courierId, VehicleType vehicleType, String licensePlate, boolean availability) {
-        this.courierId = courierId;
+    public Courier(
+            Long userId, String username,
+            String userPassword, String email,
+            UserRole role, Timestamp createdAt,
+            VehicleType vehicleType, String licensePlate, boolean availability
+    ) {
+        super(userId, username, userPassword, email, role, createdAt);
         this.vehicleType = vehicleType;
         this.licensePlate = licensePlate;
         this.availability = availability;
-    }
-
-    public Long getCourierId() {
-        return courierId; }
-    public void setCourierId(Long courierId) {
-        this.courierId = courierId;
     }
 
     public VehicleType getVehicleType() {
@@ -48,7 +46,16 @@ public class Courier {
         this.availability = availability;
     }
 
-    @Override public String toString() {
-        return "Courier{"+courierId+","+vehicleType+"}";
+    @Override
+    public String toString() {
+        return "Courier {" +
+                "id=" + getId() +
+                ", username='" + getName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", role=" + getRole() +
+                ", vehicleType=" + getVehicleType() +
+                ", licensePlate='" + getLicensePlate() + '\'' +
+                ", availability=" + availability +
+                '}';
     }
 }

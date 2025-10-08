@@ -1,25 +1,21 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IManagerDAO;
+import java.sql.Timestamp;
 
-public class Manager {
-    private Long managerId;
+public class Manager extends User {
     private boolean isVerified;
 
 
     public Manager() {}
 
-    public Manager(Long managerId, boolean isVerified) {
-        this.managerId = managerId;
+    public Manager(
+            Long userId, String username,
+            String userPassword, String email,
+            UserRole role, Timestamp createdAt,
+            Long managerId, boolean isVerified
+    ) {
+        super(userId, username, userPassword, email, role, createdAt);
         this.isVerified = isVerified;
-    }
-
-    public Long getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(Long managerId) {
-        this.managerId = managerId;
     }
 
     public boolean isVerified() {
@@ -30,7 +26,14 @@ public class Manager {
         isVerified = verified;
     }
 
-    @Override public String toString() {
-        return "Manager{"+managerId+", verified="+isVerified+"}";
+    @Override
+    public String toString() {
+        return "Manager {" +
+                "id=" + getId() +
+                ", username='" + getName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", role=" + getRole() +
+                ", isVerified=" + isVerified +
+                '}';
     }
 }

@@ -1,26 +1,22 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.ICustomerDAO;
+import java.sql.Timestamp;
 
-public class Customer {
-    private Long customerId;
+public class Customer extends User {
     private String address;
     private String phoneNumber;
 
     public Customer() {}
 
-    public Customer(Long customerId, String address, String phoneNumber) {
-        this.customerId = customerId;
+    public Customer(
+            Long userId, String username,
+            String userPassword, String email,
+            UserRole role, Timestamp createdAt,
+            String address, String phoneNumber
+    ) {
+        super(userId, username, userPassword, email, role, createdAt);
         this.address = address;
         this.phoneNumber = phoneNumber;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
     }
 
     public String getAddress() {
@@ -39,7 +35,15 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override public String toString() {
-        return "Customer{"+customerId+", addr='"+address+"'}";
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + getId() +
+                ", username='" + getName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", role=" + getRole() +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

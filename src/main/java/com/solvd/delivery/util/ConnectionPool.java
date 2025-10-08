@@ -1,24 +1,49 @@
 package com.solvd.delivery.util;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.DriverManager;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.Properties;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class ConnectionPool {
     private static ConnectionPool cp;
-    private Connection connection;
+    private final ArrayBlockingQueue<Connection> pool;
 
-    private static final String URL = "jdbc:mysql://localhost:3306/food_delivery_app_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "password";
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final int POOL_SIZE = 10;
+    private static String URL;
+    private static String USER;
+    private static String PASSWORD;
+    private static String DRIVER;
 
     private ConnectionPool() throws SQLException {
+        loadProperties();
+
         try {
             Class.forName(DRIVER);
-            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             throw new SQLException("MySQL Driver not found", e);
+        }
+
+        pool = new ArrayBlockingQueue<>(POOL_SIZE);
+        for (int i = 0; i < POOL_SIZE; i++) {
+            pool.add(DriverManager.getConnection(URL, USER, PASSWORD));
+        }
+    }
+
+    private void loadProperties() throws SQLException {
+        Properties props = new Properties();
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
+            if (input == null) {
+                throw new SQLException("Unable to find application.properties");
+            }
+            props.load(input);
+            URL = props.getProperty("db.url");
+            USER = props.getProperty("db.user");
+            PASSWORD = props.getProperty("db.password");
+            DRIVER = "com.mysql.cj.jdbc.Driver";
+        } catch (IOException e) {
+            throw new SQLException("Failed to load DB properties", e);
         }
     }
 
@@ -29,18 +54,17 @@ public class ConnectionPool {
         return cp;
     }
 
-    public Connection getConnection() {
-        return connection;
+    public Connection getConnection() throws SQLException {
+        try {
+            return pool.take();
+        } catch (InterruptedException e) {
+            throw new SQLException("Interrupted while waiting for a DB connection", e);
+        }
     }
 
-    public void releaseConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-                connection = null;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public void releaseConnection(Connection conn) {
+        if (conn != null) {
+            pool.offer(conn);
         }
     }
 }

@@ -5,17 +5,13 @@ import com.solvd.delivery.util.ConnectionPool;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public abstract class BaseDAO {
+public abstract class BaseConnectionDAO {
 
     protected Connection getConnection() throws SQLException {
         return ConnectionPool.getCp().getConnection();
     }
 
-    protected void releaseConnection() {
-        try {
-            ConnectionPool.getCp().releaseConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    protected void releaseConnection(Connection conn) throws SQLException {
+        ConnectionPool.getCp().releaseConnection(conn);
     }
 }

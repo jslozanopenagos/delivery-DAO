@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS customers (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS managers ( 
   manager_id BIGINT PRIMARY KEY, 
-  is_verified BOOLEAN DEFAULT FALSE, 
+  verified BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (manager_id) REFERENCES users(user_id) ON DELETE CASCADE,
   CONSTRAINT uq_manager_user UNIQUE (manager_id)
 );
@@ -215,7 +215,7 @@ INSERT INTO customers (customer_id, address, phone_number) VALUES
 -- -----------------------------------------------------
 -- Managers
 -- -----------------------------------------------------
-INSERT INTO managers (manager_id, is_verified) VALUES
+INSERT INTO managers (manager_id, verified) VALUES
 (6, TRUE),
 (7, FALSE);
 

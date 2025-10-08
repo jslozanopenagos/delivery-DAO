@@ -1,12 +1,6 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.impl.mysql.BaseDAO;
-import com.solvd.delivery.dao.interfaces.IUserDAO;
-
 import java.sql.Timestamp;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
 
 public class User {
     private Long userId;
