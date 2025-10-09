@@ -2,14 +2,15 @@ package com.solvd.delivery;
 
 import com.solvd.delivery.model.*;
 
-import com.solvd.delivery.service.impl.CourierService;
-import com.solvd.delivery.service.impl.CustomerService;
-import com.solvd.delivery.service.impl.ManagerService;
+import com.solvd.delivery.service.impl.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Main {
@@ -20,6 +21,11 @@ public class Main {
         CustomerService customerService = new CustomerService();
         CourierService courierService = new CourierService();
         ManagerService managerService = new ManagerService();
+        OrderService orderService = new OrderService();
+        PaymentService paymentService = new PaymentService();
+
+        String ordersPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("orders.xml")).getPath();
+        String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("payments.xml")).getPath();
 
         Customer customer = new Customer();
         customer.setName("JohnDoe");
@@ -110,5 +116,17 @@ public class Main {
 
         boolean deletedManager = managerService.deleteManager(managerId);
         LOGGER.info("Manager deleted? {}", deletedManager);
+
+        List<Order> orders = orderService.loadOrdersFromXml(ordersPath);
+        List<Payment> payments = paymentService.loadPaymentsFromXml(paymentsPath);
+
+        LOGGER.info("Orders loaded from XML:");
+        orders.forEach(order -> LOGGER.info(order.toString()));
+
+        LOGGER.info("Payments loaded from XML:");
+        payments.forEach(payment -> LOGGER.info(payment.toString()));
+
+        orderService.saveOrdersToXml(orders, "src/main/resources/orders_out.xml");
+        paymentService.savePaymentsToXml(payments, "src/main/resources/payments_out.xml");
     }
 }

@@ -1,0 +1,102 @@
+<payments>
+    <payment id="1">
+        <order_id>1</order_id>
+        <amount>21.49</amount>
+        <payment_method>CASH</payment_method>
+        <payment_status>COMPLETED</payment_status>
+        <cash_received>true</cash_received>
+        <payment_provider></payment_provider>
+        <customer_id>1</customer_id>
+        <courier_id>8</courier_id>
+    </payment>
+    <payment id="2">
+        <order_id>2</order_id>
+        <amount>13.98</amount>
+        <payment_method>CREDIT_CARD</payment_method>
+        <payment_status>COMPLETED</payment_status>
+        <cash_received></cash_received>
+        <payment_provider>Visa</payment_provider>
+        <customer_id>2</customer_id>
+        <courier_id>9</courier_id>
+    </payment>
+    <payment id="3">
+        <order_id>3</order_id>
+        <amount>8.49</amount>
+        <payment_method>DIGITAL_WALLET</payment_method>
+        <payment_status>FAILED</payment_status>
+        <cash_received></cash_received>
+        <payment_provider>Apple Pay</payment_provider>
+        <customer_id>3</customer_id>
+        <courier_id>10</courier_id>
+    </payment>
+    <payment id="4">
+        <order_id>4</order_id>
+        <amount>50.00</amount>
+        <payment_method>CASH</payment_method>
+        <payment_status>PENDING</payment_status>
+        <cash_received>false</cash_received>
+        <payment_provider></payment_provider>
+        <customer_id>4</customer_id>
+        <courier_id></courier_id>
+    </payment>
+    <payment id="5">
+        <order_id>5</order_id>
+        <amount>22.99</amount>
+        <payment_method>PAYPAL</payment_method>
+        <payment_status>COMPLETED</payment_status>
+        <cash_received></cash_received>
+        <payment_provider>PayPal</payment_provider>
+        <customer_id>5</customer_id>
+        <courier_id>8</courier_id>
+    </payment>
+    <payment id="6">
+        <order_id>6</order_id>
+        <amount>12.99</amount>
+        <payment_method>DEBIT_CARD</payment_method>
+        <payment_status>FAILED</payment_status>
+        <cash_received></cash_received>
+        <payment_provider>Stripe</payment_provider>
+        <customer_id>1</customer_id>
+        <courier_id>8</courier_id>
+    </payment>
+    <payment id="7">
+        <order_id>7</order_id>
+        <amount>6.50</amount>
+        <payment_method>CASH</payment_method>
+        <payment_status>COMPLETED</payment_status>
+        <cash_received>true</cash_received>
+        <payment_provider></payment_provider>
+        <customer_id>2</customer_id>
+        <courier_id>10</courier_id>
+    </payment>
+    <payment id="8">
+        <order_id>8</order_id>
+        <amount>40.00</amount>
+        <payment_method>DIGITAL_WALLET</payment_method>
+        <payment_status>COMPLETED</payment_status>
+        <cash_received></cash_received>
+        <payment_provider>Google Pay</payment_provider>
+        <customer_id>3</customer_id>
+        <courier_id>8</courier_id>
+    </payment>
+    <payment id="9">
+        <order_id>9</order_id>
+        <amount>19.99</amount>
+        <payment_method>CREDIT_CARD</payment_method>
+        <payment_status>PENDING</payment_status>
+        <cash_received></cash_received>
+        <payment_provider>Mastercard</payment_provider>
+        <customer_id>4</customer_id>
+        <courier_id>9</courier_id>
+    </payment>
+    <payment id="10">
+        <order_id>10</order_id>
+        <amount>10.99</amount>
+        <payment_method>CASH</payment_method>
+        <payment_status>COMPLETED</payment_status>
+        <cash_received>true</cash_received>
+        <payment_provider></payment_provider>
+        <customer_id>5</customer_id>
+        <courier_id>9</courier_id>
+    </payment>
+</payments>
