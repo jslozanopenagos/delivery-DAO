@@ -1,5 +1,6 @@
 <orders>
-    <order id="1">
+    <order>
+        <id>1</id>
         <customer_id>1</customer_id>
         <courier_id>8</courier_id>
         <establishment_id>1</establishment_id>
@@ -8,8 +9,11 @@
         <delivery_address>123 Main St</delivery_address>
         <total_price>21.49</total_price>
         <delivery_time>2025-10-08T12:00:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
+
     </order>
-    <order id="2">
+    <order>
+        <id>2</id>
         <customer_id>2</customer_id>
         <courier_id>9</courier_id>
         <establishment_id>2</establishment_id>
@@ -18,8 +22,10 @@
         <delivery_address>456 Oak St</delivery_address>
         <total_price>13.98</total_price>
         <delivery_time>2025-10-08T12:05:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="3">
+    <order>
+        <id>3</id>
         <customer_id>3</customer_id>
         <courier_id>10</courier_id>
         <establishment_id>3</establishment_id>
@@ -28,8 +34,10 @@
         <delivery_address>789 Pine St</delivery_address>
         <total_price>8.49</total_price>
         <delivery_time>2025-10-08T12:10:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="4">
+    <order>
+        <id>4</id>
         <customer_id>4</customer_id>
         <courier_id></courier_id>
         <establishment_id>4</establishment_id>
@@ -38,8 +46,10 @@
         <delivery_address>321 Maple Ave</delivery_address>
         <total_price>50.00</total_price>
         <delivery_time>2025-10-08T12:15:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="5">
+    <order>
+        <id>5</id>
         <customer_id>5</customer_id>
         <courier_id>8</courier_id>
         <establishment_id>5</establishment_id>
@@ -48,8 +58,10 @@
         <delivery_address>654 Birch Rd</delivery_address>
         <total_price>22.99</total_price>
         <delivery_time>2025-10-08T12:20:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="6">
+    <order>
+        <id>6</id>
         <customer_id>1</customer_id>
         <courier_id>9</courier_id>
         <establishment_id>6</establishment_id>
@@ -58,8 +70,10 @@
         <delivery_address>123 Main St</delivery_address>
         <total_price>12.99</total_price>
         <delivery_time>2025-10-08T12:25:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="7">
+    <order>
+        <id>7</id>
         <customer_id>2</customer_id>
         <courier_id>10</courier_id>
         <establishment_id>7</establishment_id>
@@ -68,8 +82,10 @@
         <delivery_address>456 Oak St</delivery_address>
         <total_price>6.50</total_price>
         <delivery_time>2025-10-08T12:30:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="8">
+    <order>
+        <id>8</id>
         <customer_id>3</customer_id>
         <courier_id>8</courier_id>
         <establishment_id>8</establishment_id>
@@ -78,8 +94,10 @@
         <delivery_address>789 Pine St</delivery_address>
         <total_price>40.00</total_price>
         <delivery_time>2025-10-08T12:35:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="9">
+    <order>
+        <id>9</id>
         <customer_id>4</customer_id>
         <courier_id>9</courier_id>
         <establishment_id>9</establishment_id>
@@ -88,8 +106,10 @@
         <delivery_address>321 Maple Ave</delivery_address>
         <total_price>19.99</total_price>
         <delivery_time>2025-10-08T12:40:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
-    <order id="10">
+    <order>
+        <id>10</id>
         <customer_id>5</customer_id>
         <courier_id>10</courier_id>
         <establishment_id>10</establishment_id>
@@ -98,5 +118,6 @@
         <delivery_address>654 Birch Rd</delivery_address>
         <total_price>10.99</total_price>
         <delivery_time>2025-10-08T12:45:00</delivery_time>
+        <created_at>2025-10-02T09:05:10</created_at>
     </order>
 </orders>

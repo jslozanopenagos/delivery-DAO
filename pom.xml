@@ -44,6 +44,20 @@
       <artifactId>mysql-connector-j</artifactId>
       <version>9.4.0</version>
     </dependency>
+    <!-- Jakarta XML Binding API -->
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.1</version> <!-- Use the latest stable version -->
+    </dependency>
+
+    <!-- JAXB Runtime (Glassfish JAXB RI) -->
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>4.0.4</version> <!-- Use the latest stable version -->
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

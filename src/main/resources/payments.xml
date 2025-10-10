@@ -1,102 +1,122 @@
-<payments>
-    <payment id="1">
-        <order_id>1</order_id>
+<?xml version="1.0" encoding="UTF-8"?>
+<payments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <payment>
+        <id>1</id>
+        <orderId>1</orderId>
         <amount>21.49</amount>
-        <payment_method>CASH</payment_method>
-        <payment_status>COMPLETED</payment_status>
-        <cash_received>true</cash_received>
-        <payment_provider></payment_provider>
+        <method>CASH</method>
+        <status>COMPLETED</status>
+        <provider></provider>
+        <cashReceived>true</cashReceived>
         <customer_id>1</customer_id>
         <courier_id>8</courier_id>
+        <created_at>2025-10-01T10:15:30</created_at>
     </payment>
-    <payment id="2">
-        <order_id>2</order_id>
+    <payment>
+        <id>2</id>
+        <orderId>2</orderId>
         <amount>13.98</amount>
-        <payment_method>CREDIT_CARD</payment_method>
-        <payment_status>COMPLETED</payment_status>
-        <cash_received></cash_received>
-        <payment_provider>Visa</payment_provider>
+        <method>CREDIT_CARD</method>
+        <status>COMPLETED</status>
+        <provider>Visa</provider>
+        <cashReceived>false</cashReceived>
         <customer_id>2</customer_id>
         <courier_id>9</courier_id>
+        <created_at>2025-10-01T11:20:45</created_at>
     </payment>
-    <payment id="3">
-        <order_id>3</order_id>
+    <payment>
+        <id>3</id>
+        <orderId>3</orderId>
         <amount>8.49</amount>
-        <payment_method>DIGITAL_WALLET</payment_method>
-        <payment_status>FAILED</payment_status>
-        <cash_received></cash_received>
-        <payment_provider>Apple Pay</payment_provider>
+        <method>DIGITAL_WALLET</method>
+        <status>FAILED</status>
+        <provider>Apple Pay</provider>
+        <cashReceived>false</cashReceived>
         <customer_id>3</customer_id>
         <courier_id>10</courier_id>
+        <created_at>2025-10-02T09:05:10</created_at>
     </payment>
-    <payment id="4">
-        <order_id>4</order_id>
+    <payment>
+        <id>4</id>
+        <orderId>4</orderId>
         <amount>50.00</amount>
-        <payment_method>CASH</payment_method>
-        <payment_status>PENDING</payment_status>
-        <cash_received>false</cash_received>
-        <payment_provider></payment_provider>
+        <method>CASH</method>
+        <status>PENDING</status>
+        <provider></provider>
+        <cashReceived>false</cashReceived>
         <customer_id>4</customer_id>
-        <courier_id></courier_id>
+        <created_at>2025-10-02T14:30:00</created_at>
     </payment>
-    <payment id="5">
-        <order_id>5</order_id>
+    <payment>
+        <id>5</id>
+        <orderId>5</orderId>
         <amount>22.99</amount>
-        <payment_method>PAYPAL</payment_method>
-        <payment_status>COMPLETED</payment_status>
-        <cash_received></cash_received>
-        <payment_provider>PayPal</payment_provider>
+        <method>PAYPAL</method>
+        <status>COMPLETED</status>
+        <provider>PayPal</provider>
+        <cashReceived>false</cashReceived>
         <customer_id>5</customer_id>
         <courier_id>8</courier_id>
+        <created_at>2025-10-03T08:45:20</created_at>
     </payment>
-    <payment id="6">
-        <order_id>6</order_id>
+    <payment>
+        <id>6</id>
+        <orderId>6</orderId>
         <amount>12.99</amount>
-        <payment_method>DEBIT_CARD</payment_method>
-        <payment_status>FAILED</payment_status>
-        <cash_received></cash_received>
-        <payment_provider>Stripe</payment_provider>
+        <method>DEBIT_CARD</method>
+        <status>FAILED</status>
+        <provider>Stripe</provider>
+        <cashReceived>false</cashReceived>
         <customer_id>1</customer_id>
         <courier_id>8</courier_id>
+        <created_at>2025-10-03T12:10:55</created_at>
     </payment>
-    <payment id="7">
-        <order_id>7</order_id>
+    <payment>
+        <id>7</id>
+        <orderId>7</orderId>
         <amount>6.50</amount>
-        <payment_method>CASH</payment_method>
-        <payment_status>COMPLETED</payment_status>
-        <cash_received>true</cash_received>
-        <payment_provider></payment_provider>
+        <method>CASH</method>
+        <status>COMPLETED</status>
+        <provider></provider>
+        <cashReceived>true</cashReceived>
         <customer_id>2</customer_id>
         <courier_id>10</courier_id>
+        <created_at>2025-10-04T09:15:00</created_at>
     </payment>
-    <payment id="8">
-        <order_id>8</order_id>
+    <payment>
+        <id>8</id>
+        <orderId>8</orderId>
         <amount>40.00</amount>
-        <payment_method>DIGITAL_WALLET</payment_method>
-        <payment_status>COMPLETED</payment_status>
-        <cash_received></cash_received>
-        <payment_provider>Google Pay</payment_provider>
+        <method>DIGITAL_WALLET</method>
+        <status>COMPLETED</status>
+        <provider>Google Pay</provider>
+        <cashReceived>false</cashReceived>
         <customer_id>3</customer_id>
         <courier_id>8</courier_id>
+        <created_at>2025-10-04T11:40:30</created_at>
     </payment>
-    <payment id="9">
-        <order_id>9</order_id>
+    <payment>
+        <id>9</id>
+        <orderId>9</orderId>
         <amount>19.99</amount>
-        <payment_method>CREDIT_CARD</payment_method>
-        <payment_status>PENDING</payment_status>
-        <cash_received></cash_received>
-        <payment_provider>Mastercard</payment_provider>
+        <method>CREDIT_CARD</method>
+        <status>PENDING</status>
+        <provider>Mastercard</provider>
+        <cashReceived>false</cashReceived>
         <customer_id>4</customer_id>
         <courier_id>9</courier_id>
+        <created_at>2025-10-05T15:25:15</created_at>
     </payment>
-    <payment id="10">
-        <order_id>10</order_id>
+    <payment>
+        <id>10</id>
+        <orderId>10</orderId>
         <amount>10.99</amount>
-        <payment_method>CASH</payment_method>
-        <payment_status>COMPLETED</payment_status>
-        <cash_received>true</cash_received>
-        <payment_provider></payment_provider>
+        <method>CASH</method>
+        <status>COMPLETED</status>
+        <provider></provider>
+        <cashReceived>true</cashReceived>
         <customer_id>5</customer_id>
         <courier_id>9</courier_id>
+        <created_at>2025-10-05T17:50:00</created_at>
     </payment>
 </payments>

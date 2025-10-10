@@ -1,18 +1,48 @@
 package com.solvd.delivery.model;
 
+import com.solvd.delivery.util.TimeStampAdapter;
+
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.sql.Timestamp;
 
+@XmlRootElement(name = "payment")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Payment {
+    @XmlElement(name = "id")
     private Long id;
+
+    @XmlElement(name = "orderId")
     private Long orderId;
+
+    @XmlElement(name = "amount")
     private double amount;
+
+    @XmlElement(name = "method")
     private PaymentMethod method;
+
+    @XmlElement(name = "status")
     private PaymentStatus status;
-    private String provider;       // only for digital payments
-    private Boolean cashReceived;  // only for cash payments
+
+    @XmlElement(name = "provider")
+    private String provider;
+
+    @XmlElement(name = "cashReceived")
+    private Boolean cashReceived;
+
+    @XmlElement(name = "customer_id")
     private Long customerId;
-    private Long courierId;        // nullable
+
+    @XmlElement(name = "courier_id")
+    private Long courierId;
+
+    @XmlElement(name = "created_at")
+    @XmlJavaTypeAdapter(TimeStampAdapter.class)
     private Timestamp createdAt;
+
+
+    public Payment() {}
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

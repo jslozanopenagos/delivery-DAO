@@ -1,45 +1,62 @@
 package com.solvd.delivery.service.impl;
 
 import com.solvd.delivery.model.Payment;
-import com.solvd.delivery.util.PaymentSaxParser;
+import com.solvd.delivery.model.Payments;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+
+import java.io.*;
+import java.util.Collections;
 import java.util.List;
 
 public class PaymentService {
 
-    private final PaymentSaxParser paymentParser;
     private static final Logger LOGGER = LogManager.getLogger(PaymentService.class);
+    private final String classpathResource = "payments.xml";
 
-    public PaymentService() {
-        this.paymentParser = new PaymentSaxParser();
+    public List<Payment> loadPaymentsFromClasspath() {
+        InputStream is = getClass().getClassLoader().getResourceAsStream(classpathResource);
+        if (is == null) {
+            LOGGER.error("Resource not found on classpath: {}", classpathResource);
+            return Collections.emptyList();
+        }
+
+        try (InputStream in = is) {
+            JAXBContext jc = JAXBContext.newInstance(Payments.class);
+            Unmarshaller unmarshaller = jc.createUnmarshaller();
+            Payments wrapper = (Payments) unmarshaller.unmarshal(in);
+            List<Payment> payments = wrapper.getPayments();
+            LOGGER.info("Loaded {} payments from XML.", payments == null ? 0 : payments.size());
+            return payments == null ? Collections.emptyList() : payments;
+        } catch (JAXBException | IOException e) {
+            LOGGER.error("Error loading payments JAXB: {}", e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
-    public List<Payment> loadPaymentsFromXml(String filePath) {
-        LOGGER.info("Loading payments from XML: {}",filePath);
-        List<Payment> payments = paymentParser.parsePayments(filePath);
-        LOGGER.info("Loaded {} payments from XML.", payments.size());
-        return payments;
-    }
+    public void savePaymentsToFile(List<Payment> payments, String outputPath) {
+        try {
+            JAXBContext jc = JAXBContext.newInstance(Payments.class);
+            Marshaller marshaller = jc.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-    public void savePaymentsToXml(List<Payment> payments, String filePath) {
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write("<payments>\n");
-            for (Payment payment : payments) {
-                writer.write("  <payment>\n");
-                writer.write("    <id>" + payment.getId() + "</id>\n");
-                writer.write("    <amount>" + payment.getAmount() + "</amount>\n");
-                writer.write("    <method>" + payment.getMethod() + "</method>\n");
-                writer.write("  </payment>\n");
+            Payments wrapper = new Payments(payments);
+            File out = new File(outputPath);
+            out.getParentFile().mkdirs();
+            try (FileOutputStream fos = new FileOutputStream(out)) {
+                marshaller.marshal(wrapper, fos);
             }
-            writer.write("</payments>");
-            LOGGER.info("Saved {} payments to XML: {}", payments.size(), filePath);
-        } catch (IOException e) {
-            LOGGER.error("Error saving payments to XML: {}", e.getMessage());
+
+            LOGGER.info("Saved {} payments to {}", payments == null ? 0 : payments.size(), out.getAbsolutePath());
+        } catch (JAXBException | IOException e) {
+            LOGGER.error("Error saving payments to XML: {}", e.getMessage(), e);
+            throw new RuntimeException(e);
         }
     }
 }

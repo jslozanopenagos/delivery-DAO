@@ -5,13 +5,13 @@ import java.sql.Timestamp;
 public class Order {
     private Long id;
     private Long customerId;
-    private Long courierId; // nullable
+    private Long courierId;
     private Long establishmentId;
     private OrderStatus orderStatus;
     private DeliveryStatus deliveryStatus;
     private String deliveryAddress;
     private double totalPrice;
-    private Timestamp deliveryTime; // nullable
+    private Timestamp deliveryTime;
     private Timestamp createdAt;
 
     public Long getId() { return id; }

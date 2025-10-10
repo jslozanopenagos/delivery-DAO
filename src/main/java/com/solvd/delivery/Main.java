@@ -4,11 +4,19 @@ import com.solvd.delivery.model.*;
 
 import com.solvd.delivery.service.impl.*;
 
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+
+import javax.xml.XMLConstants;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -118,15 +126,30 @@ public class Main {
         LOGGER.info("Manager deleted? {}", deletedManager);
 
         List<Order> orders = orderService.loadOrdersFromXml(ordersPath);
-        List<Payment> payments = paymentService.loadPaymentsFromXml(paymentsPath);
 
         LOGGER.info("Orders loaded from XML:");
         orders.forEach(order -> LOGGER.info(order.toString()));
 
-        LOGGER.info("Payments loaded from XML:");
-        payments.forEach(payment -> LOGGER.info(payment.toString()));
-
         orderService.saveOrdersToXml(orders, "src/main/resources/orders_out.xml");
-        paymentService.savePaymentsToXml(payments, "src/main/resources/payments_out.xml");
+
+        try {
+            JAXBContext paymentContext = JAXBContext.newInstance(Payments.class);
+            Unmarshaller unmarshaller = paymentContext.createUnmarshaller();
+
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = sf.newSchema(new File("src/main/resources/payments.xsd"));
+            unmarshaller.setSchema(schema);
+
+            Payments paymentsWrapper = (Payments) unmarshaller.unmarshal(new File(paymentsPath));
+            List<Payment> payments = paymentsWrapper.getPayments();
+
+            LOGGER.info("Payments validated and loaded from XML:");
+            payments.forEach(payment -> LOGGER.info(payment.toString()));
+
+            paymentService.savePaymentsToFile(payments, "src/main/resources/payments_out.xml");
+
+        } catch (Exception e) {
+            LOGGER.error("Payments XML validation or unmarshalling failed: {}", e.getMessage(), e);
+        }
     }
 }

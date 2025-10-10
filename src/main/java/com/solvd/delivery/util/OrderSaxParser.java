@@ -41,7 +41,7 @@ public class OrderSaxParser {
                 public void endElement(String uri, String localName, String qName) {
                     if (order != null) {
                         switch (qName) {
-                            case "order_id" -> order.setId(Long.parseLong(content));
+                            case "id" -> order.setId(Long.parseLong(content));
                             case "customer_id" -> order.setCustomerId(Long.parseLong(content));
                             case "courier_id" -> order.setCourierId(content.isEmpty() ? null : Long.parseLong(content));
                             case "establishment_id" -> order.setEstablishmentId(Long.parseLong(content));
