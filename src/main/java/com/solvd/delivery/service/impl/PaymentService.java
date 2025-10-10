@@ -11,6 +11,9 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
+import javax.xml.XMLConstants;
+import javax.xml.validation.SchemaFactory;
+
 import java.io.*;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +40,20 @@ public class PaymentService {
         } catch (JAXBException | IOException e) {
             LOGGER.error("Error loading payments JAXB: {}", e.getMessage(), e);
             throw new RuntimeException(e);
+        }
+    }
+
+    public List<Payment> loadPaymentsWithValidation(String xmlPath, String xsdPath) {
+        try {
+            JAXBContext jc = JAXBContext.newInstance(Payments.class);
+            Unmarshaller unmarshaller = jc.createUnmarshaller();
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            unmarshaller.setSchema(sf.newSchema(new File(xsdPath)));
+            Payments wrapper = (Payments) unmarshaller.unmarshal(new File(xmlPath));
+            return wrapper.getPayments();
+        } catch (Exception e) {
+            LOGGER.error("Payments XML validation/unmarshalling failed: {}", e.getMessage(), e);
+            return Collections.emptyList();
         }
     }
 

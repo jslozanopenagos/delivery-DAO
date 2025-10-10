@@ -34,6 +34,7 @@ public class Main {
 
         String ordersPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("orders.xml")).getPath();
         String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("payments.xml")).getPath();
+        String paymentsXsdPath = "src/main/resources/payments.xsd";
 
         Customer customer = new Customer();
         customer.setName("JohnDoe");
@@ -132,24 +133,10 @@ public class Main {
 
         orderService.saveOrdersToXml(orders, "src/main/resources/orders_out.xml");
 
-        try {
-            JAXBContext paymentContext = JAXBContext.newInstance(Payments.class);
-            Unmarshaller unmarshaller = paymentContext.createUnmarshaller();
+        List<Payment> payments = paymentService.loadPaymentsWithValidation(paymentsPath, paymentsXsdPath);
+        LOGGER.info("Payments validated and loaded from XML:");
+        payments.forEach(LOGGER::info);
 
-            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = sf.newSchema(new File("src/main/resources/payments.xsd"));
-            unmarshaller.setSchema(schema);
-
-            Payments paymentsWrapper = (Payments) unmarshaller.unmarshal(new File(paymentsPath));
-            List<Payment> payments = paymentsWrapper.getPayments();
-
-            LOGGER.info("Payments validated and loaded from XML:");
-            payments.forEach(payment -> LOGGER.info(payment.toString()));
-
-            paymentService.savePaymentsToFile(payments, "src/main/resources/payments_out.xml");
-
-        } catch (Exception e) {
-            LOGGER.error("Payments XML validation or unmarshalling failed: {}", e.getMessage(), e);
-        }
+        paymentService.savePaymentsToFile(payments, "src/main/resources/payments_out.xml");
     }
 }
