@@ -9,7 +9,6 @@
 
   <name>delivery-DAO</name>
   <url>http://maven.apache.org</url>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -50,13 +49,22 @@
       <artifactId>jakarta.xml.bind-api</artifactId>
       <version>4.0.1</version> <!-- Use the latest stable version -->
     </dependency>
-
     <!-- JAXB Runtime (Glassfish JAXB RI) -->
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
       <artifactId>jaxb-runtime</artifactId>
       <version>4.0.4</version> <!-- Use the latest stable version -->
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.17.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.everit.json</groupId>
+      <artifactId>org.everit.json.schema</artifactId>
+      <version>1.5.1</version>
     </dependency>
   </dependencies>
   <build>
@@ -66,6 +74,11 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.0</version>
+        <configuration>
+          <source>21</source>
+          <target>21</target>
+          <release>21</release>
+        </configuration>
       </plugin>
       <!-- SureFire -->
       <plugin>

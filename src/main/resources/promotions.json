@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "code": "WELCOME10",
+    "description": "10% off for first-time users",
+    "discountPercentage": 10.0,
+    "validFrom": "2025-01-01T00:00:00",
+    "validUntil": "2025-12-31T23:59:59",
+    "active": true
+  },
+  {
+    "id": 2,
+    "code": "FREESHIP",
+    "description": "Free shipping for orders over $30",
+    "discountPercentage": 0.0,
+    "validFrom": "2025-05-01T00:00:00",
+    "validUntil": "2025-10-31T23:59:59",
+    "active": true
+  }
+]

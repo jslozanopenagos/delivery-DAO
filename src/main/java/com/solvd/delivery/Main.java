@@ -29,8 +29,12 @@ public class Main {
         CustomerService customerService = new CustomerService();
         CourierService courierService = new CourierService();
         ManagerService managerService = new ManagerService();
+
         OrderService orderService = new OrderService();
         PaymentService paymentService = new PaymentService();
+
+        PromotionService promotionService = new PromotionService();
+        AchievementService achievementService = new AchievementService();
 
         String ordersPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("orders.xml")).getPath();
         String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("payments.xml")).getPath();
@@ -138,5 +142,17 @@ public class Main {
         payments.forEach(LOGGER::info);
 
         paymentService.savePaymentsToFile(payments, "src/main/resources/payments_out.xml");
+
+        List<Promotion> promotions = promotionService.loadPromotions("src/main/resources/promotions.json");
+        List<Achievement> achievements = achievementService.loadAchievements("src/main/resources/achievements.json");
+
+        LOGGER.info("Promotions loaded from JSON:");
+        promotions.forEach(promo -> LOGGER.info(promo.toString()));
+
+        LOGGER.info("Achievements loaded from JSON:");
+        achievements.forEach(ach -> LOGGER.info(ach.toString()));
+
+        promotionService.savePromotions(promotions, "src/main/resources/promotions_out.json");
+        achievementService.saveAchievements(achievements, "src/main/resources/achievements_out.json");
     }
 }

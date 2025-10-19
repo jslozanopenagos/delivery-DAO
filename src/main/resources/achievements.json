@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Speed Demon",
+    "description": "Deliver 50 orders on time",
+    "points": 200,
+    "unlocked": false
+  },
+  {
+    "id": 2,
+    "name": "Loyal Customer",
+    "description": "Place 100 orders",
+    "points": 300,
+    "unlocked": true
+  }
+]
