@@ -4,19 +4,12 @@ import com.solvd.delivery.model.*;
 
 import com.solvd.delivery.service.impl.*;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Unmarshaller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import javax.xml.XMLConstants;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-
-import java.io.File;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,9 +29,11 @@ public class Main {
         PromotionService promotionService = new PromotionService();
         AchievementService achievementService = new AchievementService();
 
-        String ordersPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("orders.xml")).getPath();
-        String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("payments.xml")).getPath();
-        String paymentsXsdPath = "src/main/resources/payments.xsd";
+        UserServiceMyBatis userServiceMyBatis = new UserServiceMyBatis();
+
+        String ordersPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("xml/orders.xml")).getPath();
+        String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("xml/payments.xml")).getPath();
+        String paymentsXsdPath = "src/main/resources/xml/payments.xsd";
 
         Customer customer = new Customer();
         customer.setName("JohnDoe");
@@ -135,16 +130,16 @@ public class Main {
         LOGGER.info("Orders loaded from XML:");
         orders.forEach(order -> LOGGER.info(order.toString()));
 
-        orderService.saveOrdersToXml(orders, "src/main/resources/orders_out.xml");
+        orderService.saveOrdersToXml(orders, "src/main/resources/xml/orders_out.xml");
 
         List<Payment> payments = paymentService.loadPaymentsWithValidation(paymentsPath, paymentsXsdPath);
         LOGGER.info("Payments validated and loaded from XML:");
         payments.forEach(LOGGER::info);
 
-        paymentService.savePaymentsToFile(payments, "src/main/resources/payments_out.xml");
+        paymentService.savePaymentsToFile(payments, "src/main/resources/xml/payments_out.xml");
 
-        List<Promotion> promotions = promotionService.loadPromotions("src/main/resources/promotions.json");
-        List<Achievement> achievements = achievementService.loadAchievements("src/main/resources/achievements.json");
+        List<Promotion> promotions = promotionService.loadPromotions("src/main/resources/json/promotions.json");
+        List<Achievement> achievements = achievementService.loadAchievements("src/main/resources/json/achievements.json");
 
         LOGGER.info("Promotions loaded from JSON:");
         promotions.forEach(promo -> LOGGER.info(promo.toString()));
@@ -152,7 +147,32 @@ public class Main {
         LOGGER.info("Achievements loaded from JSON:");
         achievements.forEach(ach -> LOGGER.info(ach.toString()));
 
-        promotionService.savePromotions(promotions, "src/main/resources/promotions_out.json");
-        achievementService.saveAchievements(achievements, "src/main/resources/achievements_out.json");
+        promotionService.savePromotions(promotions, "src/main/resources/json/promotions_out.json");
+        achievementService.saveAchievements(achievements, "src/main/resources/json/achievements_out.json");
+
+        LOGGER.info("=== Testing UserServiceMyBatis (MyBatis Implementation) ===");
+
+        User user = new User();
+        user.setName("Julian");
+        user.setPassword("test1234");
+        user.setEmail("julian@example.com");
+        user.setRole(UserRole.CUSTOMER);
+        user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+
+        userServiceMyBatis.createUser(user);
+        User fetchedById = userServiceMyBatis.getUserById(user.getId());
+        if (fetchedById != null) {
+            LOGGER.info("Fetched user by ID: {}", fetchedById);
+        }
+
+        User fetchedByEmail = userServiceMyBatis.getUserByEmail("julian@example.com");
+        if (fetchedByEmail != null) {
+            LOGGER.info("Fetched user by email: {}", fetchedByEmail);
+        }
+
+        List<User> allUsers = userServiceMyBatis.getAllUsers();
+        LOGGER.info("All users in DB (MyBatis):");
+        allUsers.forEach(u -> LOGGER.info("{}", u));
+
     }
 }

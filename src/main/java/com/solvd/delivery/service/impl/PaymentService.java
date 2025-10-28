@@ -21,7 +21,7 @@ import java.util.List;
 public class PaymentService {
 
     private static final Logger LOGGER = LogManager.getLogger(PaymentService.class);
-    private final String classpathResource = "payments.xml";
+    private final String classpathResource = "xml/payments.xml";
 
     public List<Payment> loadPaymentsFromClasspath() {
         InputStream is = getClass().getClassLoader().getResourceAsStream(classpathResource);

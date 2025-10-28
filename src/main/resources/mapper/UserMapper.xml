@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.delivery.dao.interfaces.UserMapper">
+
+    <!-- Map DB columns to Java fields -->
+    <resultMap id="UserResultMap" type="com.solvd.delivery.model.User">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="email" column="email"/>
+        <result property="role" column="role"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO users (username, user_password, email, role, created_at)
+        VALUES (#{username}, #{userPassword}, #{email}, #{role}, #{createdAt})
+    </insert>
+
+    <select id="findById" resultMap="UserResultMap">
+        SELECT user_id, username, user_password, email, role, created_at
+        FROM users
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT user_id, username, user_password, email, role, created_at
+        FROM users
+    </select>
+
+    <select id="findByEmail" resultMap="UserResultMap">
+        SELECT user_id, username, user_password, email, role, created_at
+        FROM users
+        WHERE email = #{email}
+    </select>
+
+</mapper>

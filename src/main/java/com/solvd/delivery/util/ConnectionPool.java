@@ -33,15 +33,16 @@ public class ConnectionPool {
 
     private void loadProperties() throws SQLException {
         Properties props = new Properties();
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("db.properties")) {
             if (input == null) {
                 throw new SQLException("Unable to find application.properties");
             }
             props.load(input);
-            URL = props.getProperty("db.url");
-            USER = props.getProperty("db.user");
-            PASSWORD = props.getProperty("db.password");
-            DRIVER = "com.mysql.cj.jdbc.Driver";
+            DRIVER = props.getProperty("driver");
+            URL = props.getProperty("url");
+            USER = props.getProperty("username");
+            PASSWORD = props.getProperty("password");
+
         } catch (IOException e) {
             throw new SQLException("Failed to load DB properties", e);
         }

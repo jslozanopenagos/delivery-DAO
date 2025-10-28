@@ -1,7 +1,5 @@
 package com.solvd.delivery.model;
 
-import java.time.LocalDateTime;
-
 public class Promotion {
 
     private Long id;
