@@ -1,7 +1,5 @@
 package com.solvd.delivery.model;
 
-import com.solvd.delivery.dao.interfaces.IMenuItemDAO;
-
 import java.sql.Timestamp;
 
 public class MenuItem {

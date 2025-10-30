@@ -1,5 +1,7 @@
 package com.solvd.delivery;
 
+import com.solvd.delivery.dao.impl.mysql.CustomerDAO;
+import com.solvd.delivery.dao.interfaces.ICustomerDAO;
 import com.solvd.delivery.model.*;
 
 import com.solvd.delivery.service.impl.*;
@@ -19,7 +21,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
-        CustomerService customerService = new CustomerService();
+        ICustomerDAO dao = new CustomerDAO();
+        CustomerService customerService = new CustomerService(dao);
         CourierService courierService = new CourierService();
         ManagerService managerService = new ManagerService();
 
