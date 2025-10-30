@@ -1,7 +1,8 @@
 package com.solvd.delivery.service.impl;
 
 import com.solvd.delivery.model.User;
-import com.solvd.delivery.dao.impl.mybatis.mapper.UserMyBatisDAO;
+import com.solvd.delivery.dao.interfaces.IUserMyBatisDAO;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,15 +11,19 @@ import java.util.List;
 public class UserServiceMyBatis {
 
     private static final Logger LOGGER = LogManager.getLogger(UserServiceMyBatis.class);
-    private final UserMyBatisDAO dao = new UserMyBatisDAO();
+    private final IUserMyBatisDAO userDao;
+
+    public UserServiceMyBatis(IUserMyBatisDAO userDAO) {
+        this.userDao = userDAO;
+    }
 
     public void createUser(User user) {
-        dao.insert(user);
+        userDao.insert(user);
         LOGGER.info("User created successfully via MyBatis: {}", user);
     }
 
     public User getUserById(Long id) {
-        User user = dao.findById(id);
+        User user = userDao.findById(id);
         if (user != null) {
             LOGGER.info("User fetched by ID {}: {}", id, user);
         } else {
@@ -28,14 +33,14 @@ public class UserServiceMyBatis {
     }
 
     public List<User> getAllUsers() {
-        List<User> users = dao.findAll();
+        List<User> users = userDao.findAll();
         LOGGER.info("Fetched {} users from database (MyBatis).", users.size());
         users.forEach(u -> LOGGER.debug("→ {}", u));
         return users;
     }
 
     public User getUserByEmail(String email) {
-        User user = dao.findByEmail(email);
+        User user = userDao.findByEmail(email);
         if (user != null) {
             LOGGER.info("User fetched by email '{}': {}", email, user);
         } else {

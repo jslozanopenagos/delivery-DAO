@@ -1,7 +1,9 @@
 package com.solvd.delivery;
 
+import com.solvd.delivery.dao.impl.mybatis.mapper.UserMyBatisDAO;
 import com.solvd.delivery.dao.impl.mysql.CustomerDAO;
 import com.solvd.delivery.dao.interfaces.ICustomerDAO;
+import com.solvd.delivery.dao.interfaces.IUserMyBatisDAO;
 import com.solvd.delivery.model.*;
 
 import com.solvd.delivery.service.impl.*;
@@ -22,6 +24,7 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         ICustomerDAO dao = new CustomerDAO();
+        IUserMyBatisDAO userDao = new UserMyBatisDAO();
         CustomerService customerService = new CustomerService(dao);
         CourierService courierService = new CourierService();
         ManagerService managerService = new ManagerService();
@@ -32,7 +35,7 @@ public class Main {
         PromotionService promotionService = new PromotionService();
         AchievementService achievementService = new AchievementService();
 
-        UserServiceMyBatis userServiceMyBatis = new UserServiceMyBatis();
+        UserServiceMyBatis userServiceMyBatis = new UserServiceMyBatis(userDao);
 
         String ordersPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("xml/orders.xml")).getPath();
         String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("xml/payments.xml")).getPath();

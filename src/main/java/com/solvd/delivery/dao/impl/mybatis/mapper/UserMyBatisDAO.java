@@ -1,5 +1,6 @@
 package com.solvd.delivery.dao.impl.mybatis.mapper;
 
+import com.solvd.delivery.dao.interfaces.IUserMyBatisDAO;
 import com.solvd.delivery.dao.interfaces.UserMapper;
 import com.solvd.delivery.model.User;
 import org.apache.ibatis.session.SqlSession;
@@ -7,7 +8,7 @@ import com.solvd.delivery.util.MyBatisConfig;
 
 import java.util.List;
 
-public class UserMyBatisDAO {
+public class UserMyBatisDAO implements IUserMyBatisDAO {
 
     public void insert(User user) {
         try (SqlSession session = MyBatisConfig.openSession()) {
