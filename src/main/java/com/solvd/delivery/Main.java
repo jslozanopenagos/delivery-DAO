@@ -1,11 +1,11 @@
 package com.solvd.delivery;
 
+import com.solvd.delivery.model.*;
+import com.solvd.delivery.service.impl.*;
+
+import com.solvd.delivery.dao.factory.DAOFactory;
 import com.solvd.delivery.dao.interfaces.ICustomerDAO;
 import com.solvd.delivery.dao.interfaces.IUserMyBatisDAO;
-import com.solvd.delivery.factory.DAOFactory;
-import com.solvd.delivery.model.*;
-
-import com.solvd.delivery.service.impl.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,14 +44,15 @@ public class Main {
         String paymentsPath = Objects.requireNonNull(Main.class.getClassLoader().getResource("xml/payments.xml")).getPath();
         String paymentsXsdPath = "src/main/resources/xml/payments.xsd";
 
-        Customer customer = new Customer();
-        customer.setName("JohnDoe");
-        customer.setPassword("secret123");
-        customer.setEmail("johndoe@example.com");
-        customer.setRole(UserRole.CUSTOMER);
-        customer.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        customer.setAddress("123 Main St");
-        customer.setPhoneNumber("555-1234");
+        Customer customer = new CustomerBuilder()
+                .withName("JohnDoe")
+                .withPassword("secret123")
+                .withEmail("johndoe@example.com")
+                .withRole(UserRole.CUSTOMER)
+                .withCreatedAt(new Timestamp(System.currentTimeMillis()))
+                .withAddress("123 Main St")
+                .withPhoneNumber("555-1234")
+                .build();
 
         Long customerId = customerService.createCustomer(customer);
         LOGGER.info("Customer created with ID: {}", customerId);
@@ -74,15 +75,16 @@ public class Main {
         boolean deletedCustomer = customerService.deleteCustomer(customerId);
         LOGGER.info("Customer deleted? {}", deletedCustomer);
 
-        Courier courier = new Courier();
-        courier.setName("FastCourier");
-        courier.setPassword("fastpass");
-        courier.setEmail("courier@example.com");
-        courier.setRole(UserRole.COURIER);
-        courier.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        courier.setVehicleType(VehicleType.BIKE);
-        courier.setLicensePlate("XYZ-123");
-        courier.setAvailability(true);
+        Courier courier = new CourierBuilder()
+                .withName("FastCourier")
+                .withPassword("fastpass")
+                .withEmail("courier@example.com")
+                .withRole(UserRole.COURIER)
+                .withCreatedAt(new Timestamp(System.currentTimeMillis()))
+                .withVehicleType(VehicleType.BIKE)
+                .withLicensePlate("XYZ-123")
+                .withAvailability(true)
+                .build();
 
         Long courierId = courierService.createCourier(courier);
         LOGGER.info("Courier created with ID: {}", courierId);
@@ -105,13 +107,14 @@ public class Main {
         boolean deletedCourier = courierService.deleteCourier(courierId);
         LOGGER.info("Courier deleted? {}", deletedCourier);
 
-        Manager manager = new Manager();
-        manager.setName("AliceManager");
-        manager.setPassword("managerpass");
-        manager.setEmail("manager@example.com");
-        manager.setRole(UserRole.MANAGER);
-        manager.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        manager.setVerified(false);
+        Manager manager = new ManagerBuilder()
+                .withName("AliceManager")
+                .withPassword("managerpass")
+                .withEmail("manager@example.com")
+                .withRole(UserRole.MANAGER)
+                .withCreatedAt(new Timestamp(System.currentTimeMillis()))
+                .withVerified(false)
+                .build();
 
         Long managerId = managerService.createManager(manager);
         LOGGER.info("Manager created with ID: {}", managerId);
@@ -161,12 +164,13 @@ public class Main {
 
         LOGGER.info("=== Testing UserServiceMyBatis (MyBatis Implementation) ===");
 
-        User user = new User();
-        user.setName("Julian");
-        user.setPassword("test1234");
-        user.setEmail("julian@example.com");
-        user.setRole(UserRole.CUSTOMER);
-        user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        User user = new UserBuilder<>()
+                .withName("Julian")
+                .withPassword("test1234")
+                .withEmail("julian@example.com")
+                .withRole(UserRole.CUSTOMER)
+                .withCreatedAt(new Timestamp(System.currentTimeMillis()))
+                .build();
 
         userServiceMyBatis.createUser(user);
         User fetchedById = userServiceMyBatis.getUserById(user.getId());

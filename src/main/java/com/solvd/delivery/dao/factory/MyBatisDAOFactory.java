@@ -1,4 +1,4 @@
-package com.solvd.delivery.factory;
+package com.solvd.delivery.dao.factory;
 
 import com.solvd.delivery.dao.impl.mybatis.mapper.UserMyBatisDAO;
 import com.solvd.delivery.dao.interfaces.ICustomerDAO;
