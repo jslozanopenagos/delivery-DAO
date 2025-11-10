@@ -186,6 +186,5 @@ public class Main {
         List<User> allUsers = userServiceMyBatis.getAllUsers();
         LOGGER.info("All users in DB (MyBatis):");
         allUsers.forEach(u -> LOGGER.info("{}", u));
-
     }
 }
