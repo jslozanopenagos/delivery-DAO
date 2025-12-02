@@ -37,6 +37,12 @@
       <artifactId>commons-lang3</artifactId>
       <version>3.18.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>9.4.0</version>
+    </dependency>
     <!-- Jakarta XML Binding API -->
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
@@ -72,12 +78,6 @@
       <artifactId>mysql-connector-j</artifactId>
       <version>9.4.0</version>
     </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.11.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -92,15 +92,11 @@
           <release>21</release>
         </configuration>
       </plugin>
+      <!-- SureFire -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.3</version>
-        <configuration>
-          <suiteXmlFiles>
-            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-          </suiteXmlFiles>
-        </configuration>
       </plugin>
     </plugins>
   </build>

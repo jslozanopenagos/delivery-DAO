@@ -4,7 +4,7 @@ import com.solvd.delivery.dao.impl.mysql.CustomerDAO;
 import com.solvd.delivery.dao.interfaces.ICustomerDAO;
 import com.solvd.delivery.dao.interfaces.IUserMyBatisDAO;
 
-public class MySQLDAOFactory extends DAOFactory {
+class MySQLDAOFactory extends DAOFactory {
     @Override
     public ICustomerDAO getCustomerDAO() {
         return new CustomerDAO();
