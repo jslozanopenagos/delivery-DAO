@@ -29,4 +29,25 @@
         </classes>
     </test>
 
+    <test name="pricing-regression">
+        <groups>
+            <run>
+                <include name="pricing"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.MenuItemPricingTest"/>
+        </classes>
+    </test>
+
+    <test name="payment-regression">
+        <groups>
+            <run>
+                <include name="payment"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.PaymentProcessingTest"/>
+        </classes>
+    </test>
 </suite>
