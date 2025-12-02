@@ -8,10 +8,10 @@ import java.sql.SQLException;
 public abstract class BaseConnectionDAO {
 
     protected Connection getConnection() throws SQLException {
-        return ConnectionPool.getCp().getConnection();
+        return ConnectionPool.getInstance().getConnection();
     }
 
     protected void releaseConnection(Connection conn) throws SQLException {
-        ConnectionPool.getCp().releaseConnection(conn);
+        ConnectionPool.getInstance().releaseConnection(conn);
     }
 }

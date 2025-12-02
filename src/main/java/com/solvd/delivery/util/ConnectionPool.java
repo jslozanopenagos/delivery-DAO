@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class ConnectionPool {
-    private static ConnectionPool cp;
+    private static ConnectionPool instance;
     private final ArrayBlockingQueue<Connection> pool;
 
     private static final int POOL_SIZE = 10;
@@ -48,11 +48,11 @@ public class ConnectionPool {
         }
     }
 
-    public static synchronized ConnectionPool getCp() throws SQLException {
-        if (cp == null) {
-            cp = new ConnectionPool();
+    public static synchronized ConnectionPool getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new ConnectionPool();
         }
-        return cp;
+        return instance;
     }
 
     public Connection getConnection() throws SQLException {
