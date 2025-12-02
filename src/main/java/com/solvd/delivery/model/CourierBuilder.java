@@ -16,7 +16,7 @@ public class CourierBuilder extends UserBuilder<CourierBuilder> {
     }
 
     public CourierBuilder withAvailability(boolean availability) {
-        ((Courier) user).setAvailability(availability);
+        ((Courier) user).setAvailable(availability);
         return this;
     }
 

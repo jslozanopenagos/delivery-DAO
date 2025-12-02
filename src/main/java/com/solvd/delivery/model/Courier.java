@@ -38,11 +38,11 @@ public class Courier extends User {
         this.licensePlate = licensePlate;
     }
 
-    public boolean isAvailability() {
+    public boolean isAvailable() {
         return availability;
     }
 
-    public void setAvailability(boolean availability) {
+    public void setAvailable(boolean availability) {
         this.availability = availability;
     }
 

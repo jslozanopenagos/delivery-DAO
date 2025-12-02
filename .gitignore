@@ -45,4 +45,3 @@ target/
 
 ### application.properties
 src/main/resources/db.properties
-.qodo

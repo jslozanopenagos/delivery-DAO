@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Smoke Test Suite" verbose="1" parallel="methods" thread-count="3">
+    <parameter name="courierName" value="smoke_test_courier"/>
+    <parameter name="licensePlate" value="SMOKE-999"/>
+
+    <test name="smoke-critical-tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.CustomerModelTest">
+                <methods>
+                    <include name="testCustomerCreationWithValidData"/>
+                </methods>
+            </class>
+            <class name="com.solvd.delivery.PaymentProcessingTest">
+                <methods>
+                    <include name="testPaymentMethodValidation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

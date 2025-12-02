@@ -1,0 +1,65 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Regression Test Suite" verbose="1" parallel="false">
+    <parameter name="courierName" value="regression_courier"/>
+    <parameter name="licensePlate" value="REG-1234"/>
+    <parameter name="testEnvironment" value="regression"/>
+
+    <test name="customer-regression">
+        <groups>
+            <run>
+                <include name="customer"/>
+                <include name="validation"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.CustomerModelTest"/>
+        </classes>
+    </test>
+
+    <test name="order-regression">
+        <groups>
+            <run>
+                <include name="order"/>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.OrderValidationTest"/>
+        </classes>
+    </test>
+
+    <test name="courier-regression">
+        <groups>
+            <run>
+                <include name="courier"/>
+                <include name="availability"/>
+                <include name="vehicle"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.CourierAvailabilityTest"/>
+        </classes>
+    </test>
+
+    <test name="pricing-regression">
+        <groups>
+            <run>
+                <include name="pricing"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.MenuItemPricingTest"/>
+        </classes>
+    </test>
+
+    <test name="payment-regression">
+        <groups>
+            <run>
+                <include name="payment"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.PaymentProcessingTest"/>
+        </classes>
+    </test>
+</suite>
