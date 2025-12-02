@@ -1,0 +1,7 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="delivery-dao-tests" verbose="1">
+    <suite-files>
+        <suite-file path="suites/regression-test.xml"/>
+        <suite-file path="suites/smoke-tests.xml"/>
+    </suite-files>
+</suite>

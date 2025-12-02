@@ -23,7 +23,7 @@ public class CourierDAO extends BaseUserDAO<Courier> implements ICourierDAO {
         courier.setCreatedAt(rs.getTimestamp("created_at"));
         courier.setVehicleType(VehicleType.valueOf(rs.getString("vehicle_type")));
         courier.setLicensePlate(rs.getString("license_plate"));
-        courier.setAvailability(rs.getBoolean("availability"));
+        courier.setAvailable(rs.getBoolean("availability"));
         return courier;
     }
 
@@ -123,7 +123,7 @@ public class CourierDAO extends BaseUserDAO<Courier> implements ICourierDAO {
                     courierStmt.setLong(1, userId);
                     courierStmt.setString(2, courier.getVehicleType().name());
                     courierStmt.setString(3, courier.getLicensePlate());
-                    courierStmt.setBoolean(4, courier.isAvailability());
+                    courierStmt.setBoolean(4, courier.isAvailable());
                     courierStmt.executeUpdate();
 
                     conn.commit();
@@ -167,7 +167,7 @@ public class CourierDAO extends BaseUserDAO<Courier> implements ICourierDAO {
 
                 courierStmt.setString(1, courier.getVehicleType().name());
                 courierStmt.setString(2, courier.getLicensePlate());
-                courierStmt.setBoolean(3, courier.isAvailability());
+                courierStmt.setBoolean(3, courier.isAvailable());
                 courierStmt.setLong(4, courier.getId());
                 int rowsAffected = courierStmt.executeUpdate();
 

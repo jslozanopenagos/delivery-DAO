@@ -100,7 +100,7 @@ public class Main {
             LOGGER.info(c);
         }
 
-        courier.setAvailability(false);
+        courier.setAvailable(false);
         boolean updatedCourier = courierService.updateCourier(courier);
         LOGGER.info("Courier updated? {}", updatedCourier);
 

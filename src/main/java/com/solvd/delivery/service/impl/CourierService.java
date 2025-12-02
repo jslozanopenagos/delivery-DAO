@@ -46,7 +46,7 @@ public class CourierService implements ICourierService {
         Optional<Courier> optCourier = COURIERDAO.findById(courierId);
         if (optCourier.isPresent()) {
             Courier courier = optCourier.get();
-            courier.setAvailability(availability);
+            courier.setAvailable(availability);
             return COURIERDAO.update(courier);
         }
         return false;
