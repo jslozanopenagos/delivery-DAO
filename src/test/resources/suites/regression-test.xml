@@ -16,6 +16,18 @@
         </classes>
     </test>
 
+    <test name="order-regression">
+        <groups>
+            <run>
+                <include name="order"/>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.solvd.delivery.OrderValidationTest"/>
+        </classes>
+    </test>
+
     <test name="courier-regression">
         <groups>
             <run>

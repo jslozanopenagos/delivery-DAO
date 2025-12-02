@@ -28,7 +28,7 @@ public class PaymentProcessingTest {
             groups = { "payment", "smoke"
             },
             description = "Verify payment method validation for all supported payment types")
-    public void testPaymentMethodValidation(PaymentMethod method, String provider, boolean isCash) {
+    public void verifyPaymentMethodValidationTest(PaymentMethod method, String provider, boolean isCash) {
         Payment payment = new Payment();
         payment.setId(1L);
         payment.setOrderId(100L);
